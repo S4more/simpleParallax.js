@@ -208,7 +208,7 @@ class ParallaxInstance {
         const elementImageHeight = this.element.clientHeight;
 
         // range is calculate with the image height by the scale
-        this.rangeMax = elementImageHeight * this.settings.scale - elementImageHeight + 100;
+        this.rangeMax = elementImageHeight * this.settings.scale - elementImageHeight;
     }
 
     // get the percentage and the translate value to apply on the element
@@ -234,7 +234,11 @@ class ParallaxInstance {
         // if not range max is set, recalculate it
         if (!this.rangeMax) {
             this.getRangeMax();
+            console.log("not max!");
+        } else {
+            console.log("max!");
         }
+
 
         // transform this % into the max range of the element
         // rounding translateValue to a non float int - as minimum pixel for browser to render is 1 (no 0.5)
