@@ -208,7 +208,7 @@ class ParallaxInstance {
         const elementImageHeight = this.element.clientHeight;
 
         // range is calculate with the image height by the scale
-        this.rangeMax = elementImageHeight * this.settings.scale - elementImageHeight;
+        this.rangeMax = elementImageHeight * this.settings.scale - elementImageHeight + 100;
     }
 
     // get the percentage and the translate value to apply on the element
