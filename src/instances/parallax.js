@@ -131,6 +131,7 @@ class ParallaxInstance {
 
         // add will-change CSS property to improve perfomance
         this.element.style.willChange = 'transform';
+        this.element.style.opacity = "1";
     }
 
     // apply the transition effet
