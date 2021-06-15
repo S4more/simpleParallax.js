@@ -1,6 +1,6 @@
 /*!
  * simpleParallax - simpleParallax is a simple JavaScript library that gives your website parallax animations on any images or videos, 
- * @date: 15-06-2021 11:54:48, 
+ * @date: 15-06-2021 12:4:29, 
  * @version: 5.6.2,
  * @link: https://simpleparallax.com/
  */
@@ -466,7 +466,7 @@ var parallax_ParallaxInstance = /*#__PURE__*/function () {
     value: function getTranslateValue() {
       // calculate the % position of the element comparing to the viewport
       // rounding percentage to a 1 number float to avoid unn unnecessary calculation
-      var percentage = ((viewport.positions.bottom + 84 - this.elementTop) / ((viewport.positions.height + this.elementHeight) / 100)).toFixed(1); // When greater than 0 and less than 280
+      var percentage = ((viewport.positions.bottom + 84 - this.elementTop) / ((viewport.positions.height - 84 + this.elementHeight) / 100)).toFixed(1); // When greater than 0 and less than 280
       //percentage = ((viewport.positions.top - this.elementTop) * 100 / this.settings.height).toFixed(1);
       // sometime the percentage exceeds 100 or goes below 0
 
