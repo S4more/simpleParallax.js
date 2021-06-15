@@ -15,7 +15,6 @@ export default class SimpleParallax {
 
         // check if the browser support simpleParallax
         if (!isSupportedBrowser()) return;
-
         this.elements = convertToArray(elements);
         this.defaults = {
             delay: 0,
@@ -66,6 +65,7 @@ export default class SimpleParallax {
     resizeIsDone() {
         clearTimeout(resizeID);
         resizeID = setTimeout(this.refresh, 200);
+        this.elements.forEach(x => x.style.opacity = "1");
     }
 
     // animation frame

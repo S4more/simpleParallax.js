@@ -126,12 +126,11 @@ class ParallaxInstance {
         if (this.settings.overflow === false) {
             // if overflow option is set to false
             // add scale style so the image can be translated without getting out of its container
-            this.element.style[cssTransform] = `scale(${this.settings.scale})`;
+            //this.element.style[cssTransform] = `scale(${this.settings.scale})`;
         }
 
         // add will-change CSS property to improve perfomance
         this.element.style.willChange = 'transform';
-        this.element.style.opacity = "1";
     }
 
     // apply the transition effet
@@ -216,8 +215,10 @@ class ParallaxInstance {
     getTranslateValue() {
         // calculate the % position of the element comparing to the viewport
         // rounding percentage to a 1 number float to avoid unn unnecessary calculation
-        let percentage = ((viewport.positions.bottom - this.elementTop) / ((viewport.positions.height + this.elementHeight) / 100)).toFixed(1);
+        let percentage = ((viewport.positions.bottom + 84 - this.elementTop) / ((viewport.positions.height + this.elementHeight) / 100)).toFixed(1);
 
+        // When greater than 0 and less than 280
+        //percentage = ((viewport.positions.top - this.elementTop) * 100 / this.settings.height).toFixed(1);
         // sometime the percentage exceeds 100 or goes below 0
         percentage = Math.min(100, Math.max(0, percentage));
 
@@ -235,11 +236,7 @@ class ParallaxInstance {
         // if not range max is set, recalculate it
         if (!this.rangeMax) {
             this.getRangeMax();
-            console.log("not max!");
-        } else {
-            console.log("max!");
         }
-
 
         // transform this % into the max range of the element
         // rounding translateValue to a non float int - as minimum pixel for browser to render is 1 (no 0.5)
@@ -280,7 +277,7 @@ class ParallaxInstance {
         if (this.settings.overflow === false) {
             // if overflow option is set to false
             // add the scale style
-            inlineCss = `translate3d(${translateValueX}, ${translateValueY}, 0) scale(${this.settings.scale})`;
+            inlineCss = `translate3d(${translateValueX}, ${translateValueY}, 0) scale(${this.settings.scale}`;
         } else {
             inlineCss = `translate3d(${translateValueX}, ${translateValueY}, 0)`;
         }

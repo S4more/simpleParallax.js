@@ -1,6 +1,6 @@
 /*!
  * simpleParallax - simpleParallax is a simple JavaScript library that gives your website parallax animations on any images or videos, 
- * @date: 20-08-2020 14:0:14, 
+ * @date: 15-06-2021 11:54:48, 
  * @version: 5.6.2,
  * @link: https://simpleparallax.com/
  */
@@ -362,10 +362,9 @@ var parallax_ParallaxInstance = /*#__PURE__*/function () {
   }, {
     key: "setTransformCSS",
     value: function setTransformCSS() {
-      if (this.settings.overflow === false) {
-        // if overflow option is set to false
+      if (this.settings.overflow === false) {// if overflow option is set to false
         // add scale style so the image can be translated without getting out of its container
-        this.element.style[helpers_cssTransform] = "scale(".concat(this.settings.scale, ")");
+        //this.element.style[cssTransform] = `scale(${this.settings.scale})`;
       } // add will-change CSS property to improve perfomance
 
 
@@ -467,14 +466,16 @@ var parallax_ParallaxInstance = /*#__PURE__*/function () {
     value: function getTranslateValue() {
       // calculate the % position of the element comparing to the viewport
       // rounding percentage to a 1 number float to avoid unn unnecessary calculation
-      var percentage = ((viewport.positions.bottom - this.elementTop) / ((viewport.positions.height + this.elementHeight) / 100)).toFixed(1); // sometime the percentage exceeds 100 or goes below 0
+      var percentage = ((viewport.positions.bottom + 84 - this.elementTop) / ((viewport.positions.height + this.elementHeight) / 100)).toFixed(1); // When greater than 0 and less than 280
+      //percentage = ((viewport.positions.top - this.elementTop) * 100 / this.settings.height).toFixed(1);
+      // sometime the percentage exceeds 100 or goes below 0
 
       percentage = Math.min(100, Math.max(0, percentage)); // if a maxTransition has been set, we round the percentage to that number
 
       if (this.settings.maxTransition !== 0 && percentage > this.settings.maxTransition) {
         percentage = this.settings.maxTransition;
       } // sometime the same percentage is returned
-      // if so we don't do aything
+      // if so we don't do anything
 
 
       if (this.oldPercentage === percentage) {
@@ -489,7 +490,7 @@ var parallax_ParallaxInstance = /*#__PURE__*/function () {
 
 
       this.translateValue = (percentage / 100 * this.rangeMax - this.rangeMax / 2).toFixed(0); // sometime the same translate value is returned
-      // if so we don't do aything
+      // if so we don't do anything
 
       if (this.oldTranslateValue === this.translateValue) {
         return false;
@@ -524,7 +525,7 @@ var parallax_ParallaxInstance = /*#__PURE__*/function () {
       if (this.settings.overflow === false) {
         // if overflow option is set to false
         // add the scale style
-        inlineCss = "translate3d(".concat(translateValueX, ", ").concat(translateValueY, ", 0) scale(").concat(this.settings.scale, ")");
+        inlineCss = "translate3d(".concat(translateValueX, ", ").concat(translateValueY, ", 0) scale(").concat(this.settings.scale);
       } else {
         inlineCss = "translate3d(".concat(translateValueX, ", ").concat(translateValueY, ", 0)");
       } // add style on the element using the adequate CSS transform
@@ -634,6 +635,9 @@ var simpleParallax_SimpleParallax = /*#__PURE__*/function () {
     value: function resizeIsDone() {
       clearTimeout(resizeID);
       resizeID = setTimeout(this.refresh, 200);
+      this.elements.forEach(function (x) {
+        return x.style.opacity = "1";
+      });
     } // animation frame
 
   }, {
